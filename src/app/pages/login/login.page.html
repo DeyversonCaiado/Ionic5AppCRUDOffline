@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Home</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-card *ngFor="let item of contacts">
+            <ion-card-header>
+                <h1>{{item.contact.name}}</h1>
+            </ion-card-header>
+            <ion-card-content>
+                <h1>{{item.contact.phone}} - {{item.contact.birth | date:'dd/MM/yyyy'}}</h1>
+            </ion-card-content>
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-left clear small (click)="editContact(item)">
+                      <ion-icon name="create"> </ion-icon>
+                      <div>Editar</div>
+                    </button>
+
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left clear small (click)="removeContact(item)">
+                    <ion-icon name="trash"> </ion-icon>
+                    <div>Excluir</div>
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <a href="tel:{{item.contact.phone}}" ion-button icon-left clear small (click)="editContact(item)">
+                        <ion-icon name="call"> </ion-icon>
+                        <div>Ligar</div>
+                    </a>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="addContact()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
